@@ -1,6 +1,6 @@
 import React from 'react';
 import logo from './logo.svg';
-import './App.css';
+import styles from './App.module.css';
 import robots from './mockdata/robots.json'
 import Robot from "./component/Robot";
 function App() {
