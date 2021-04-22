@@ -14,9 +14,19 @@ interface State {
 
 const App :React.FC = (props)=>{
     const [count,setCount] = useState<number>(0)
+    const [robotGallery,setRobotGallery] = useState<any>([])
+    useEffect(()=>{
+        document.title = `点击${count}次`
+    },[count])
 
-
-
+    useEffect(()=>{
+        fetch("https://jsonplaceholder.typicode.com/users")
+            .then(response =>response.json())
+            .then(data =>{
+                console.log(data)
+                setRobotGallery(data)
+            })
+    },[])
     return (
       <div className={styles.app}>
         <div className={styles.appHeader}>
@@ -32,11 +42,11 @@ const App :React.FC = (props)=>{
         </button>
         <span>count: {count}</span>
         <ShoppingCart />
-        {/*<div className={styles.robotList}>
-          {this.state.robotGallery.map((r) => (
+        <div className={styles.robotList}>
+          {robotGallery.map((r:any) => (
             <Robot id={r.id} email={r.email} name={r.name} />
           ))}
-        </div>*/}
+        </div>
       </div>
     );
   }
