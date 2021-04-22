@@ -16,3 +16,8 @@
          fetchData()
      }, [])```
 - 如何处理Loading？在数据未返回之前的那段时间
+    - 定义一个状态`loading`来判断即可
+    
+- 如何处理异常？利用try...catch即可
+
+### Context 与 useContext
