@@ -5,17 +5,19 @@ import robots from './mockdata/robots.json'
 import Robot from "./component/Robot";
 function App() {
   return (
-    <ul>
-      {
-        robots.map((robot)=>{
-          return <Robot id={robot.id}
-                 name={robot.name}
-                 email={robot.email}
-                 key={robot.id}
-          />
-        })
-      }
-    </ul>
+    <div className={styles.app}>
+      <div className={styles.robotList}>
+        {
+          robots.map((robot)=>{
+            return <Robot id={robot.id}
+                          name={robot.name}
+                          email={robot.email}
+                          key={robot.id}
+            />
+          })
+        }
+      </div>
+    </div>
   );
 }
 
