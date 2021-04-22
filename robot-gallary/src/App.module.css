@@ -16,6 +16,11 @@
   pointer-events: none;
 }
 
+h1 {
+  font-family: 'Slidefu';
+  font-size: 72px;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .appLogo {
     animation: App-logo-spin infinite 20s linear;
