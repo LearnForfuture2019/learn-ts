@@ -21,3 +21,44 @@
 - 如何处理异常？利用try...catch即可
 
 ### Context 与 useContext
+#### Context可以实现全局状态的共享
+- 使用方式是：定义一个全局上下文变量`
+                     export const appContext = React.createContext(defaultContextValue)`
+ 
+ - 创建一个context组件，该组件使用返回一个`appContext.Provider`，之后将该组件包裹在需要使用该组件的地方
+ ```
+//这是全局状态组件
+const AppStateProvider:React.FC = (props) =>{
+    //setState类型：React.Dispatch<React.SetStateAction<AppstateValue>>
+    const [state,setState] = useState(defaultContextValue)
+
+    return (
+        <appContext.Provider value={state} >
+            <appSetStateContext.Provider value={setState}>
+                {props.children}
+            </appSetStateContext.Provider>
+
+        </appContext.Provider>
+        )
+
+} 
+//这是需要使用全局状态的组件
+<AppStateProvider>
+          <App/>
+      </AppStateProvider>
+ ```
+- 对于在app组件下的组件，如果是函数组件，那么可以使用useContext来对状态进行获取
+；对于类组件，则需要使用appContext.Consumer来获取
+```
+//类组件获取信息的方式
+const value = useContext(appContext)
+//函数组件获取全局状态
+<appContext.Consumer>
+    {
+        （value）=>{
+            return (<div></div>) 
+        }   
+    }
+</appContext.Consumer>
+```  
+很显然，如果是使用函数组件的话，获取全局状态将会变得十分简单
