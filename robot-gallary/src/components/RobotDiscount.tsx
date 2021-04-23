@@ -1,18 +1,18 @@
 import React, {useContext} from "react";
 import styles from './Robot.module.css'
 import {appContext} from '../AppState'
-import withAddToCart from "./AddToCart";
-export interface RobotProps {
+import withAddToCart from './AddToCart'
+
+interface RobotProps {
     id: number;
     name: string;
     email: string;
-    addToCart:({id,name})=>void
+    addToCart: ({id, name}) => void
 }
-
-const Robot: React.FC<RobotProps> = ({id, name, email,addToCart}) => {
+//该组件是为了验证高阶组件的功能
+const RobotDiscount: React.FC<RobotProps> = ({id, name, email,addToCart}) => {
     const value = useContext(appContext)
-    //将下部部分的代码放入高阶组件AddToCart实现逻辑复用
-   /* const setState = useContext(appSetStateContext)
+  /*  const setState = useContext(appSetStateContext)
     const addToCart = ()=>{
         if (setState){
             setState(state =>{
@@ -28,6 +28,7 @@ const Robot: React.FC<RobotProps> = ({id, name, email,addToCart}) => {
     return (
         <div className={styles.cardContainer}>
             <img alt="robot" src={`https://robohash.org/${id}`}/>
+            <h2>打折商品</h2>
             <h2>{name}</h2>
             <p>{email}</p>
             <p>作者：{value.username}</p>
@@ -36,4 +37,4 @@ const Robot: React.FC<RobotProps> = ({id, name, email,addToCart}) => {
     );
 };
 
-export default withAddToCart(Robot);
+export default withAddToCart(RobotDiscount);
